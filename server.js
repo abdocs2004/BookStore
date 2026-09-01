@@ -10,7 +10,7 @@ import notFound from "./middleware/notFound.js";
 
 const app = express();
 
-app.route("/").get((req, res) => {
+app.route("/").get((res) => {
     res.sendFile("public/index.html", { root: process.cwd() });
 });
 app.use(express.static("public"));
@@ -23,7 +23,7 @@ app.use(notFound);
 
 const PORT = process.env.PORT || 3000;
 
-connectDB().then(() => {
+await connectDB().then(() => { 
     app.listen(PORT, () => {
         console.log(`Server is running on port ${PORT}`);
     });
