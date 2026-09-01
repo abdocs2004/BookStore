@@ -10,7 +10,7 @@ import notFound from "./middleware/notFound.js";
 
 const app = express();
 
-app.route("/").get((res) => {
+app.route("/").get((req,res) => {
     res.sendFile("public/index.html", { root: process.cwd() });
 });
 app.use(express.static("public"));
