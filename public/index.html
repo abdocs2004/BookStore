@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مكتبة المدار | إدارة المتجر</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header class="topbar">
+        <a class="brand" href="/">
+            <span class="brand-mark">م</span>
+            <span><strong>مكتبة المدار</strong><small>لوحة إدارة المتجر</small></span>
+        </a>
+        <nav>
+            <a href="#books">الكتب</a>
+            <a href="#users">المستخدمون</a>
+            <a href="/about">عن الخادم</a>
+        </nav>
+        <div class="session">
+            <span id="session-label">زائر</span>
+            <button id="logout-button" class="button ghost hidden">تسجيل الخروج</button>
+        </div>
+    </header>
+
+    <main class="shell">
+        <section class="intro">
+            <div>
+                <p class="eyebrow">BOOK STORE API / CONTROL DESK</p>
+                <h1>كل بيانات متجرك، <em>في مكان واحد.</em></h1>
+                <p class="lead">أدر الكتب والحسابات، وراقب حالة الاتصال بواجهة البرمجة من لوحة خفيفة وسريعة.</p>
+            </div>
+            <div class="status-chip"><span></span><span id="api-status">جاهز للاتصال</span></div>
+        </section>
+
+        <section id="auth-panel" class="auth-panel">
+            <div class="panel-heading">
+                <p class="eyebrow">ACCESS</p>
+                <h2>ابدأ بجلسة آمنة</h2>
+                <p>سجّل الدخول لإضافة الكتب. حذف الكتب متاح للمشرفين فقط.</p>
+            </div>
+            <div class="auth-grid">
+                <form id="login-form" class="form-card">
+                    <h3>تسجيل الدخول</h3>
+                    <label>البريد الإلكتروني<input name="email" type="email" required placeholder="name@example.com"></label>
+                    <label>كلمة المرور<input name="password" type="password" required minlength="6" placeholder="••••••••"></label>
+                    <button class="button primary" type="submit">دخول إلى اللوحة</button>
+                </form>
+                <form id="register-form" class="form-card secondary-form">
+                    <h3>إنشاء حساب</h3>
+                    <label>الاسم<input name="name" required minlength="2" placeholder="اسم المستخدم"></label>
+                    <label>البريد الإلكتروني<input name="email" type="email" required placeholder="name@example.com"></label>
+                    <label>كلمة المرور<input name="password" type="password" required minlength="6" placeholder="6 أحرف على الأقل"></label>
+                    <button class="button outline" type="submit">إنشاء حساب</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="dashboard" class="dashboard hidden">
+            <div class="section-head" id="books">
+                <div><p class="eyebrow">CATALOGUE</p><h2>إدارة الكتب</h2></div>
+                <button id="refresh-button" class="button ghost">تحديث البيانات</button>
+            </div>
+            <div class="management-grid">
+                <form id="book-form" class="form-card book-form">
+                    <h3 id="book-form-title">إضافة كتاب</h3>
+                    <input name="id" type="hidden">
+                    <label>عنوان الكتاب<input name="title" required minlength="1" placeholder="مثال: حول العالم في 80 يوماً"></label>
+                    <label>السعر<input name="price" type="number" min="0" step="0.01" required placeholder="0.00"></label>
+                    <div class="form-actions"><button class="button primary" type="submit">حفظ الكتاب</button><button id="cancel-edit" class="button ghost hidden" type="button">إلغاء</button></div>
+                </form>
+                <div class="table-wrap"><table><thead><tr><th>العنوان</th><th>السعر</th><th>الإجراءات</th></tr></thead><tbody id="books-list"></tbody></table><p id="books-empty" class="empty">لا توجد كتب بعد.</p></div>
+            </div>
+
+            <div class="section-head users-heading" id="users">
+                <div><p class="eyebrow">PEOPLE</p><h2>المستخدمون</h2></div>
+            </div>
+            <div class="table-wrap"><table><thead><tr><th>الاسم</th><th>البريد</th><th>الدور</th><th>تاريخ التسجيل</th></tr></thead><tbody id="users-list"></tbody></table><p id="users-empty" class="empty">لا توجد حسابات.</p></div>
+        </section>
+    </main>
+    <div id="toast" class="toast" role="status"></div>
+    <script src="/app.js" defer></script>
+</body>
+</html>
