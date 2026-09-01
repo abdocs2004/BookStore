@@ -4,9 +4,7 @@ import connectDB from "./models/BookStore.js";
 import booksRoutes from "./Routes/books.routes.js";
 import usersRoutes from "./Routes/users.route.js";
 import {
-    welcome,
-    about,
-    image
+    welcome
 } from "./Controller/generalController.js";
 import notFound from "./middleware/notFound.js";
 
