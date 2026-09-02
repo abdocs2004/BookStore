@@ -23,13 +23,18 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 // Routes
-app.route("/").get((req,res) => {
-    res.sendFile("public/index.html", { root: __dirname });
+app.get("/", (req, res) => {
+    res.sendFile("index.html", { root: "public" });
 });
 app.get("/api", welcome);
 
 app.use("/books", booksRoutes);
 app.use("/", usersRoutes);
+
+// Fallback to index.html for any unmatched routes
+app.get("*", (req, res) => {
+    res.sendFile("index.html", { root: "public" });
+});
 
 app.use(notFound);
 
