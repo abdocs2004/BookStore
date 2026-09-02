@@ -10,6 +10,10 @@ import notFound from "./middleware/notFound.js";
 
 const app = express();
 
+// Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.route("/").get((req,res) => {
     res.sendFile("public/index.html", { root: process.cwd() });
 });
