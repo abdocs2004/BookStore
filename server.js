@@ -7,6 +7,11 @@ import {
     welcome
 } from "./Controller/generalController.js";
 import notFound from "./middleware/notFound.js";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const app = express();
 
@@ -14,10 +19,13 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.route("/").get((req,res) => {
-    res.sendFile("public/index.html", { root: process.cwd() });
-});
+// Serve static files FIRST
 app.use(express.static("public"));
+
+// Routes
+app.route("/").get((req,res) => {
+    res.sendFile("public/index.html", { root: __dirname });
+});
 app.get("/api", welcome);
 
 app.use("/books", booksRoutes);
