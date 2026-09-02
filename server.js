@@ -31,11 +31,6 @@ app.get("/api", welcome);
 app.use("/books", booksRoutes);
 app.use("/", usersRoutes);
 
-// Fallback to index.html for any unmatched routes
-app.get("*", (req, res) => {
-    res.sendFile("index.html", { root: "public" });
-});
-
 app.use(notFound);
 
 const PORT = process.env.PORT || 3000;
